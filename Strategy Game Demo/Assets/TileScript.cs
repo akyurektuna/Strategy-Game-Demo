@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TileScript : MonoBehaviour
 {
@@ -19,12 +20,18 @@ public class TileScript : MonoBehaviour
     private void OnMouseOver() {
         Debug.Log("helov");
         if(Input.GetMouseButton(0)){
-            PlaceTower();
+            PlaceStructure();
         }
         
     }
 
-    private void PlaceTower(){
+    private void PlaceStructure(){
+        if(!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn != null){
+            GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity);
+            structure.transform.SetParent(transform);
+            //GameManager.Instance.ClickedBtn = null;
+        }
 
+       
     }
 }
