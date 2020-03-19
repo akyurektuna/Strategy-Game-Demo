@@ -1,9 +1,10 @@
-﻿public class StructureFactory{
+﻿public class StructureFactory: Singleton<StructureFactory>{
 
     public enum Structures{
             Barracks,
             PowerPlant
     }
+
    public Structure FactoryMethod(Structures structureType){
        Structure structure = null;
        switch(structureType){

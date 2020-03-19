@@ -1,6 +1,10 @@
 ﻿
-public interface Structure
+public abstract class Structure
 {
-    void Destroy();
+    string name { get; }
+    int dimensionX { get; }
+    int dimensionY { get;  }
+
+    public abstract void destroy();
 
 }

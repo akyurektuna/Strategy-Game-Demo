@@ -1,10 +1,15 @@
 ﻿
 public class PowerPlant : Structure{
-   public PowerPlant(){
+   public PowerPlant(){}
 
-   }
+   string name { get{ return "PowerPlant";} }
+   int dimensionX {  get{ return 2;}}
+    int dimensionY {  get{ return 3;} }
 
-   public void Destroy(){
+
+   public override void destroy(){
        
    }
+
+
 }

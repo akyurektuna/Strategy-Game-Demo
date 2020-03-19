@@ -6,6 +6,8 @@ public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] 
     private GameObject tileObject;
+
+    //a getter for the private tileObjects size
     public float TileSize{
         get{return tileObject.GetComponent<SpriteRenderer>().sprite.bounds.size.x;}
     }
@@ -14,7 +16,7 @@ public class LevelManager : Singleton<LevelManager>
         CreateLevel();
         }
 
-    //making background tile for the camera view so the bounds are edges of the camera view
+    //making background tile for the camera view so that the bounds are edges of the camera view
     // using just one type of tile  
     private void CreateLevel(){
         //worldStart is the starting point for the background tiles which is top left corner of the camera

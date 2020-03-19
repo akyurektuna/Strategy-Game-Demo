@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    void Update() {
+        if(Input.GetMouseButtonDown(0)){
+          
+        }
+    }
+
 
     public StructureButton ClickedBtn { get; private set; }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void PickStructure(StructureButton sb){
         this.ClickedBtn = sb;
