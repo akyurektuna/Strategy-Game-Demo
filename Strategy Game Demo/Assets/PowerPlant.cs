@@ -10,6 +10,8 @@ public class PowerPlant : Structure{
    public override void destroy(){
        
    }
-
+     public override string structureInfo(){
+    return "Power Plant";
+  }
 
 }

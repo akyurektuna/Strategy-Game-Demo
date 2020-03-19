@@ -6,5 +6,5 @@ public abstract class Structure
     int dimensionY { get;  }
 
     public abstract void destroy();
-
+    public abstract string structureInfo();
 }

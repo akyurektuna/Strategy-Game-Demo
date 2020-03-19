@@ -11,7 +11,7 @@ public class LevelManager : Singleton<LevelManager>
     public float TileSize{
         get{return tileObject.GetComponent<SpriteRenderer>().sprite.bounds.size.x;}
     }
-    // Start is called before the first frame update
+   
     void Start(){ 
         CreateLevel();
         }

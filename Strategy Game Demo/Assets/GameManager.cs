@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    void Update() {
-        if(Input.GetMouseButtonDown(0)){
-          
-        }
-    }
+   public StructureButton ClickedBtn { get; private set; }
 
-
-    public StructureButton ClickedBtn { get; private set; }
-
-    public void PickStructure(StructureButton sb){
-        this.ClickedBtn = sb;
-        Hover.Instance.Activate(sb.Sprite);
+    //picks up the structure when button is clicked in the production menu
+    public void PickStructure(StructureButton sbutton){
+        this.ClickedBtn = sbutton;
+        Hover.Instance.Activate(sbutton.Sprite);
     }
 }

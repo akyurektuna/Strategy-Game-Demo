@@ -6,23 +6,23 @@ public class Hover : Singleton<Hover>
 {
 
     private SpriteRenderer spriteRenderer;
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    void Start(){
         this.spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         FollowMouse();
     }
 
-    private void FollowMouse(){
+    private void FollowMouse(){ 
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(transform.position.x,transform.position.y,0);
     }
 
+
+    //call to this method is done in GameManager
+    //after a button is clicked in the Production Menu
     public void Activate(Sprite sprite){
         this.spriteRenderer.sprite = sprite;
     }
