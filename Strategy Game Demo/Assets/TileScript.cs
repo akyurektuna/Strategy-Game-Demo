@@ -24,14 +24,16 @@ public class TileScript : MonoBehaviour
             if(GameManager.Instance.ClickedBtn.StructurePrefab.name.Equals("barracks")){
                 createdStructure = StructureFactory.Instance.FactoryMethod(StructureFactory.Structures.Barracks);
                 GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity);
-                structure = createdStructure.gameObject;
+                structure.AddComponent<Barracks>();
+               //structure = createdStructure.gameObject;
                 structure.transform.SetParent(transform);
             }
 
             if(GameManager.Instance.ClickedBtn.StructurePrefab.name.Equals("powerplant")){
                 createdStructure = StructureFactory.Instance.FactoryMethod(StructureFactory.Structures.PowerPlant);
                 GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity);
-                structure = createdStructure.gameObject;
+                structure.AddComponent<PowerPlant>();
+                //structure = createdStructure.gameObject;
                 structure.transform.SetParent(transform);
             }
         }

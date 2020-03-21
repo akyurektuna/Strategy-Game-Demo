@@ -42,23 +42,9 @@ private void Start() {
             //tag of the object that ray hit is checked
             if(selection.CompareTag(selectableTag)){
                 GameObject go = hit.collider.gameObject;
-                //Structure str = go.GetComponent<Structure>();
-                //Debug.Log("name.GO:  "+ go.name);
-                
-                Structure structure = null;
-                /*
-                the objects on the map that ray hit are prefabs? They are not members of Structure classes
-                so I need to initialize them again (which is not a good idea and unnecessary)  
-                */
-                if(go.name.Equals("barracks(Clone)")){
-                    structure = (new GameObject()).AddComponent<Barracks>(); 
-                }
-                if(go.name.Equals("powerplant(Clone)")){
-                    structure = (new GameObject()).AddComponent<PowerPlant>(); 
-                }
-                
+                Structure str = go.GetComponent<Structure>();
                 //the method to update information panel is called with the clicked object as parameter.
-                updateInfoPanel(structure);
+                updateInfoPanel(str);
             }
 
         }
