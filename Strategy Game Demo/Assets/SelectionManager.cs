@@ -67,11 +67,17 @@ private void Start() {
         if(str.producesUnits()){
             CreateButton(childPanel.transform,childPanel.transform.position,str);        
         }
+        if(!str.producesUnits() && button != null){
+            //if(button != null){
+                Destroy(button);
+            //} 
+        }
     }
 
 
 
     public void CreateButton(Transform panel ,Vector3 position, Structure structure){
+        button = new GameObject();
         button.transform.parent = panel;
         button.AddComponent<RectTransform>();
         button.AddComponent<Button>();

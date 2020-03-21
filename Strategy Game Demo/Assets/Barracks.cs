@@ -11,7 +11,7 @@ string name { get{ return "Barracks";} }
    //Barracks b = getGameObj().AddComponent<Barracks>();  
  }
   public void createSoldier(GameObject prefab){
-      GameObject soldier = Instantiate(prefab,transform.position,Quaternion.identity);
+      GameObject soldier = Instantiate(prefab,transform.position+new Vector3(0,-2,0),Quaternion.identity);
       soldier.transform.SetParent(transform);
   }
 

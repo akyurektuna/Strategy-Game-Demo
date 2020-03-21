@@ -11,7 +11,7 @@ public class PowerPlant : Structure{
        
    }
      public override string structureInfo(){
-    return "Power Plant";
+    return "Power Plant \nRestores energy.";
   }
 
    public PowerPlant createPowerplant(){
