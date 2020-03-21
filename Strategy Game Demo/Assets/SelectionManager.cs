@@ -50,7 +50,6 @@ private void Start() {
         }
     }
 
-
    public void updateInfoPanel(Structure str){
        //structureInfo() is a method of Structure class and returns a string, child classes have their own structureInfo() methods.
         text.text = str.structureInfo();
@@ -68,15 +67,12 @@ private void Start() {
             CreateButton(childPanel.transform,childPanel.transform.position,str);        
         }
         if(!str.producesUnits() && button != null){
-            //if(button != null){
                 Destroy(button);
-            //} 
         }
     }
 
-
-
     public void CreateButton(Transform panel ,Vector3 position, Structure structure){
+        Destroy(button);
         button = new GameObject();
         button.transform.parent = panel;
         button.AddComponent<RectTransform>();

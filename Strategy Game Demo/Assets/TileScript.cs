@@ -11,7 +11,7 @@ public class TileScript : MonoBehaviour
         Debug.Log("mouse over working");
 
         if(Input.GetMouseButton(0)){
-            if(GameManager.Instance.ClickedBtn != null){
+            if(GameManager.Instance.ClickedBtn != null && Hover.Instance.canBePlaced == true){
                  PlaceStructure();
             }
         }
