@@ -1,13 +1,24 @@
-﻿
+﻿using UnityEngine;
 public class Barracks : Structure{
-  public Barracks(){}
+ 
 string name { get{ return "Barracks";} }
    int dimensionX {  get{ return 4;}}
     int dimensionY {  get{ return 4;} }
 
-  public void createSoldier(){
-      //update here
+
+
+ public Barracks(){
+   //Barracks b = getGameObj().AddComponent<Barracks>();  
+ }
+  public void createSoldier(GameObject prefab){
+      GameObject soldier = Instantiate(prefab,transform.position,Quaternion.identity);
+      soldier.transform.SetParent(transform);
   }
+
+  public Barracks createBarracks(){
+    return getGameObj().AddComponent<Barracks>(); 
+  }
+  
 
   public override void destroy(){
       
@@ -15,5 +26,9 @@ string name { get{ return "Barracks";} }
 
   public override string structureInfo(){
     return "Barracks \nCan produce soldier units.";
+  }
+
+  public override bool producesUnits(){
+    return true;
   }
 }

@@ -11,4 +11,10 @@ public class GameManager : Singleton<GameManager>
         this.ClickedBtn = sbutton;
         Hover.Instance.Activate(sbutton.Sprite);
     }
+
+
+    //unclick method can be used for deactivating button after it is used.
+    public void unclick(){
+        ClickedBtn = null;
+    }
 }

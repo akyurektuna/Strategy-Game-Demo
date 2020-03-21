@@ -13,13 +13,18 @@ public class SelectionManager : MonoBehaviour
     */
     [SerializeField] private string selectableTag = "Selectable";
     [SerializeField] private Sprite buttonImg;
+    [SerializeField]private GameObject prefabUnit;
 
     private  GameObject panelTextObj;
     private Text text;
+    private GameObject button;
+    
     
 private void Start() {
     panelTextObj = new GameObject();  
     text = panelTextObj.AddComponent<Text>();  
+    button = new GameObject();
+
 }
     void Update()
     {
@@ -29,6 +34,7 @@ private void Start() {
 
             //casting a ray to click on a structure to update information panel
             //if the structure is able to create units, it will be shown on this panel
+
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             var selection = hit.transform;
@@ -36,21 +42,32 @@ private void Start() {
             //tag of the object that ray hit is checked
             if(selection.CompareTag(selectableTag)){
                 GameObject go = hit.collider.gameObject;
-                Debug.Log("go: "+go);
+                //Structure str = go.GetComponent<Structure>();
+                //Debug.Log("name.GO:  "+ go.name);
                 
-                //TileScript t = new TileScript();
-                updateInfoPanel(go);
+                Structure structure = null;
+                /*
+                the objects on the map that ray hit are prefabs? They are not members of Structure classes
+                so I need to initialize them again (which is not a good idea and unnecessary)  
+                */
+                if(go.name.Equals("barracks(Clone)")){
+                    structure = (new GameObject()).AddComponent<Barracks>(); 
+                }
+                if(go.name.Equals("powerplant(Clone)")){
+                    structure = (new GameObject()).AddComponent<PowerPlant>(); 
+                }
+                
+                //the method to update information panel is called with the clicked object as parameter.
+                updateInfoPanel(structure);
             }
 
         }
-        
     }
 
 
-   public void updateInfoPanel(GameObject gameObj){
-        Barracks b = new Barracks();
- 
-        text.text = b.structureInfo();
+   public void updateInfoPanel(Structure str){
+       //structureInfo() is a method of Structure class and returns a string, child classes have their own structureInfo() methods.
+        text.text = str.structureInfo();
  
         Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
         text.font = ArialFont;
@@ -59,27 +76,29 @@ private void Start() {
         panelTextObj.transform.SetParent(panel.transform);
         panelTextObj.transform.position = panelTextObj.transform.parent.position;
 
-        CreateButton(childPanel.transform,childPanel.transform.position);        
+        //producesUnit() is a method of Structure class and returns a boolean, child classes have their own structureInfo() methods.
+        //if the clicked structure can produce units there should be a button to activate and produce units. 
+        if(str.producesUnits()){
+            CreateButton(childPanel.transform,childPanel.transform.position,str);        
+        }
     }
 
 
 
-    public void CreateButton(Transform panel ,Vector3 position){
-        GameObject button = new GameObject();
+    public void CreateButton(Transform panel ,Vector3 position, Structure structure){
         button.transform.parent = panel;
         button.AddComponent<RectTransform>();
         button.AddComponent<Button>();
         button.transform.position = position;
         button.AddComponent<Image>();
         button.GetComponent<Image>().sprite = buttonImg;
-    //button.GetComponent<RectTransform>().SetSize(size);
-    //last parameter UnityEngine.Events.UnityAction method
-    //button.GetComponent<Button>().onClick.AddListener(method);
+        button.GetComponent<Button>().onClick.AddListener(delegate{ methodButton(structure); });
 }
 
-public void methodButton(){
-
-}
+    public void methodButton(Structure structure){
+        //right now only the barracks can create units, when different type of structures are added this part should be customized.
+        ((Barracks)structure).createSoldier(prefabUnit);
+    }
 
 }
 

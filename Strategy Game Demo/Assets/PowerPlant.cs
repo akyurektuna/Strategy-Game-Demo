@@ -14,4 +14,11 @@ public class PowerPlant : Structure{
     return "Power Plant";
   }
 
+   public PowerPlant createPowerplant(){
+    return getGameObj().AddComponent<PowerPlant>(); 
+  }
+
+  public override bool producesUnits(){
+    return false;
+  }
 }

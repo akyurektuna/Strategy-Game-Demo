@@ -24,18 +24,22 @@ public class TileScript : MonoBehaviour
             if(GameManager.Instance.ClickedBtn.StructurePrefab.name.Equals("barracks")){
                 createdStructure = StructureFactory.Instance.FactoryMethod(StructureFactory.Structures.Barracks);
                 GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity);
+                structure = createdStructure.gameObject;
                 structure.transform.SetParent(transform);
             }
 
             if(GameManager.Instance.ClickedBtn.StructurePrefab.name.Equals("powerplant")){
-                 createdStructure = StructureFactory.Instance.FactoryMethod(StructureFactory.Structures.PowerPlant);
-                 GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity);
+                createdStructure = StructureFactory.Instance.FactoryMethod(StructureFactory.Structures.PowerPlant);
+                GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity);
+                structure = createdStructure.gameObject;
                 structure.transform.SetParent(transform);
             }
-            
-            //GameManager.Instance.ClickedBtn = null;
         }
+
+        //after a structure is placed, sprite on the cursor disappears and to place a structure again player has to reclick the button on the production menu.
+        Hover.Instance.Deactivate();
+        GameManager.Instance.unclick();
         return createdStructure;
-       
+
     }
 }

@@ -26,4 +26,10 @@ public class Hover : Singleton<Hover>
     public void Activate(Sprite sprite){
         this.spriteRenderer.sprite = sprite;
     }
+
+    public void Deactivate(){
+        
+        //GameManager.Instance.ClickedBtn = null;
+        this.spriteRenderer.sprite = null;
+    }
 }

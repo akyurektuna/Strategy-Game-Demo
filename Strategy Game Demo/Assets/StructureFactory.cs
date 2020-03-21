@@ -7,12 +7,14 @@
 
    public Structure FactoryMethod(Structures structureType){
        Structure structure = null;
+       Barracks b = new Barracks();
+       PowerPlant p =  new PowerPlant();
        switch(structureType){
            case Structures.Barracks:
-                structure = new Barracks();
+                structure = b.createBarracks();
                 break;
            case Structures.PowerPlant:
-                structure = new PowerPlant();
+                structure = p.createPowerplant();
                 break;     
             default:
                 return null;
