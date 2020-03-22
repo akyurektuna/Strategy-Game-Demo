@@ -8,7 +8,7 @@ public class TileScript : MonoBehaviour
      private void Update() {}
 
     private void OnMouseOver() {
-        Debug.Log("mouse over working");
+        //Debug.Log("mouse over working");
 
         if(Input.GetMouseButton(0)){
             if(GameManager.Instance.ClickedBtn != null && Hover.Instance.canBePlaced == true){

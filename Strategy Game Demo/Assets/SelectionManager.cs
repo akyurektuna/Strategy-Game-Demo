@@ -19,16 +19,18 @@ public class SelectionManager : MonoBehaviour
     private Text text;
     private GameObject button;
     
-    
-private void Start() {
-    panelTextObj = new GameObject();  
-    text = panelTextObj.AddComponent<Text>();  
-    button = new GameObject();
 
-}
-    void Update()
-    {
-        Debug.Log("update?");
+    public Vector3 startPosition,startWorld;
+    public Vector3 endPosition,endWorld;
+    
+    private void Start() {
+        panelTextObj = new GameObject();  
+        text = panelTextObj.AddComponent<Text>();  
+        button = new GameObject();
+    }
+
+    void Update(){
+       // Debug.Log("update?");
        
         if(Input.GetMouseButtonDown(0)){
 
@@ -66,6 +68,7 @@ private void Start() {
         if(str.producesUnits()){
             CreateButton(childPanel.transform,childPanel.transform.position,str);        
         }
+
         if(!str.producesUnits() && button != null){
                 Destroy(button);
         }
@@ -81,7 +84,7 @@ private void Start() {
         button.AddComponent<Image>();
         button.GetComponent<Image>().sprite = buttonImg;
         button.GetComponent<Button>().onClick.AddListener(delegate{ methodButton(structure); });
-}
+    }
 
     public void methodButton(Structure structure){
         //right now only the barracks can create units, when different type of structures are added this part should be customized.
