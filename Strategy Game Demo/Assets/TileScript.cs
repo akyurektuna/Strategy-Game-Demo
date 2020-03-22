@@ -8,8 +8,6 @@ public class TileScript : MonoBehaviour
      private void Update() {}
 
     private void OnMouseOver() {
-        //Debug.Log("mouse over working");
-
         if(Input.GetMouseButton(0)){
             if(GameManager.Instance.ClickedBtn != null && Hover.Instance.canBePlaced == true){
                  PlaceStructure();
@@ -22,10 +20,9 @@ public class TileScript : MonoBehaviour
         Structure createdStructure = null;
         if(!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn != null){
             if(GameManager.Instance.ClickedBtn.StructurePrefab.name.Equals("barracks")){
-                createdStructure = StructureFactory.Instance.FactoryMethod(StructureFactory.Structures.Barracks);
-                GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity);
-                structure.AddComponent<Barracks>();
-               //structure = createdStructure.gameObject;
+                createdStructure = StructureFactory.Instance.FactoryMethod(StructureFactory.Structures.Barracks); //from the structure factory, specific structure is created
+                GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity); //game object instantiated on the map
+                structure.AddComponent<Barracks>(); //game object now has the structure component
                 structure.transform.SetParent(transform);
             }
 
@@ -33,7 +30,6 @@ public class TileScript : MonoBehaviour
                 createdStructure = StructureFactory.Instance.FactoryMethod(StructureFactory.Structures.PowerPlant);
                 GameObject structure =(GameObject)Instantiate(GameManager.Instance.ClickedBtn.StructurePrefab,transform.position,Quaternion.identity);
                 structure.AddComponent<PowerPlant>();
-                //structure = createdStructure.gameObject;
                 structure.transform.SetParent(transform);
             }
         }

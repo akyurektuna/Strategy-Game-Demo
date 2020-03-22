@@ -13,6 +13,7 @@ public class UnitManager : MonoBehaviour
 
     private void OnGUI() {
         if(isDragging){
+            //when cursor is being dragged the rectangle will be created when lmb is clicked with the ScreenHelper script.
             var rect = ScreenHelper.GetScreenRect(mousePos,Input.mousePosition);    
             ScreenHelper.DrawScreenRect(rect,new Color(0.8f, 0.8f,0.95f, 0.1f));
             ScreenHelper.DrawScreenRectBorder(rect,1,Color.white);
@@ -20,13 +21,11 @@ public class UnitManager : MonoBehaviour
 
    }
     
-
-    // Update is called once per frame
     void Update()
     {
-
         if(Input.GetMouseButtonDown(0)){
-
+            
+            //when the mouse button is down, casting a ray and checking if it hit any "soldier" tagged object
             mousePos = Input.mousePosition;
             var camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit2 = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -41,13 +40,11 @@ public class UnitManager : MonoBehaviour
             }
         }
 
-        //IsWithinSelectionBounds(selectableObject.transform) && 
+        //when the mouse button is up, select the units(soldiers) that are in the area
         if(Input.GetMouseButtonUp(0)){
             DeselectUnits();
             foreach(var selectableObject in FindObjectsOfType<BoxCollider>()){
-                Debug.Log("foreach??");
                 if(IsWithinSelectionBounds(selectableObject.transform) && selectableObject.CompareTag("soldier")){
-                    Debug.Log("forearch->if");
                     SelectUnit(selectableObject.transform,true);
                 }
             }
@@ -67,15 +64,10 @@ public class UnitManager : MonoBehaviour
 
         }
         
-        //unit.Find("soldier(Clone)").gameObject.SetActive(true);
     }
 
     private void DeselectUnits(){
-        /*
-        for(int i=0; i<selectedUnits.Count; i++){
-            selectedUnits[i].Find("soldier(Clone)").gameObject.SetActive(false);
-        }
-        */
+
         selectedUnits.Clear();
     }
 

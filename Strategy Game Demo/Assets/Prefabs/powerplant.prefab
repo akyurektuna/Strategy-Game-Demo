@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4557165983570745822}
   - component: {fileID: 6839592474529168089}
   - component: {fileID: 61468551024834774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: powerplant
   m_TagString: Selectable
   m_Icon: {fileID: 0}
